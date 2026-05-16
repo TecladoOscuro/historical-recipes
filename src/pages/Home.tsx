@@ -78,7 +78,7 @@ export function Home() {
         </div>
       </div>
 
-      <div className="pt-3 pb-8 px-4">
+      <div className="pt-4 pb-8 px-4">
         <div className="space-y-3">
           {filtered.map((recipe) => {
             const diffColor = getDifficultyColor(recipe.difficulty)

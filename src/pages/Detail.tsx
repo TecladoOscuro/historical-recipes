@@ -99,7 +99,7 @@ export function Detail() {
 
   return (
     <div className="min-h-screen bg-bp-bg text-bp-text pb-20">
-      <nav className="sticky top-0 z-20 bg-bp-bg/95 backdrop-blur-sm border-b border-bp-border">
+      <nav className="sticky top-0 z-20 bg-bp-bg/95 backdrop-blur-sm border-b border-bp-border pt-[env(safe-area-inset-top,0px)]">
         <div className="flex items-center gap-3 px-4 py-3">
           <button
             onClick={() => navigate('/')}
