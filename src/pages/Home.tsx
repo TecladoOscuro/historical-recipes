@@ -47,39 +47,38 @@ export function Home() {
 
   return (
     <div className="bg-bp-bg text-bp-text min-h-dvh">
-      <div className="fixed top-0 left-0 right-0 z-20 bg-bp-bg border-b border-bp-border pt-[env(safe-area-inset-top,0px)]">
-        <div className="flex items-center justify-between h-12 px-5">
+      <div className="sticky top-0 z-20 bg-bp-bg pt-[env(safe-area-inset-top,0px)]">
+        <div className="flex items-center justify-between h-12 px-5 border-b border-bp-border">
           <h1 className="text-lg font-bold">🏛️🍷 Banquetes del Pasado</h1>
           <span className="text-xs text-bp-muted bg-bp-surface rounded-full px-2.5 py-1">
             {filtered.length}/{recipes.length}
           </span>
         </div>
+        <div className="border-b border-bp-border">
+          <div className="px-4 py-2">
+            <input
+              type="text"
+              placeholder="Buscar receta..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full bg-bp-surface border border-bp-border rounded-lg px-3 py-1.5 text-sm text-bp-text placeholder-bp-muted focus:outline-none focus:border-bp-accent"
+            />
+          </div>
+          <div className="flex gap-1.5 px-4 pb-2 overflow-x-auto no-scrollbar">
+            {allTags.map((tag) => (
+              <button
+                key={tag.key}
+                onClick={() => toggleFilter(tag.key)}
+                className={`text-xs font-medium px-3 py-1.5 rounded-full transition-colors whitespace-nowrap ${activeFilters.includes(tag.key) ? 'bg-bp-accent text-white' : 'bg-bp-surface text-bp-muted'}`}
+              >
+                {tag.label}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <div className="fixed top-[calc(3rem+env(safe-area-inset-top,0px))] left-0 right-0 z-10 bg-bp-bg border-b border-bp-border">
-        <div className="px-4 py-2">
-          <input
-            type="text"
-            placeholder="Buscar receta..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-bp-surface border border-bp-border rounded-lg px-3 py-1.5 text-sm text-bp-text placeholder-bp-muted focus:outline-none focus:border-bp-accent"
-          />
-        </div>
-        <div className="flex gap-1.5 px-4 pb-2 overflow-x-auto no-scrollbar">
-          {allTags.map((tag) => (
-            <button
-              key={tag.key}
-              onClick={() => toggleFilter(tag.key)}
-              className={`text-xs font-medium px-3 py-1.5 rounded-full transition-colors whitespace-nowrap ${activeFilters.includes(tag.key) ? 'bg-bp-accent text-white' : 'bg-bp-surface text-bp-muted'}`}
-            >
-              {tag.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="pt-[calc(7.5rem+env(safe-area-inset-top,0px))] pb-8 px-4">
+      <div className="pb-8 px-4">
         <div className="space-y-3">
           {filtered.map((recipe) => {
             const diffColor = getDifficultyColor(recipe.difficulty)
